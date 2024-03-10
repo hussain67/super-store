@@ -4,7 +4,9 @@ function HomeLayout() {
 	return (
 		<div>
 			<h1>Home Layout</h1>
-			<Outlet />
+			<section className="align-element">
+				<Outlet />
+			</section>
 		</div>
 	);
 }
