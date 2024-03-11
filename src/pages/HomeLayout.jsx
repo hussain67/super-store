@@ -1,13 +1,16 @@
 import { Outlet } from "react-router-dom";
+import Header from "../ui/Header";
+import Navbar from "../ui/Navbar";
 
 function HomeLayout() {
 	return (
-		<div>
-			<h1>Home Layout</h1>
-			<section className="align-element">
+		<section>
+			<Header />
+			<Navbar />
+			<div className="align-element">
 				<Outlet />
-			</section>
-		</div>
+			</div>
+		</section>
 	);
 }
 
