@@ -9,3 +9,7 @@ export const customFetch = axios.create({
 export const getFeaturedProducts = async () => {
 	return await axios.get(`${API_URL}/api/products?featured=true`);
 };
+
+export const getSingleProduct = async id => {
+	return await axios.get(`${API_URL}/api/products/${id}`);
+};
