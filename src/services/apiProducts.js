@@ -13,3 +13,7 @@ export const getFeaturedProducts = async () => {
 export const getSingleProduct = async id => {
 	return await axios.get(`${API_URL}/api/products/${id}`);
 };
+
+export const getProducts = async () => {
+	return axios.get(`${API_URL}/api/products`);
+};

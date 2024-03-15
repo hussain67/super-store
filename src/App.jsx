@@ -3,7 +3,9 @@ import { About, Cart, Checkout, Error, Landing, Login, Orders, Products, Registe
 import AppLayout from "./ui/AppLayout";
 import { loader as landingLoader } from "./pages/Landing";
 import { loader as singleProductLoader } from "./pages/SingleProduct";
+import { loader as productsLoader } from "./pages/Products";
 
+// Create Router
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -17,7 +19,8 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/products",
-				elment: <Products />
+				element: <Products />,
+				loader: productsLoader
 			},
 			{
 				path: "/products/:id",
