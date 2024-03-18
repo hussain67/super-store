@@ -1,19 +1,20 @@
 import axios from "axios";
 
-const API_URL = "https://strapi-store-server.onrender.com";
+const API_URL = "https://strapi-store-server.onrender.com/api";
 
 export const customFetch = axios.create({
 	baseURL: API_URL
 });
 
 export const getFeaturedProducts = async () => {
-	return await axios.get(`${API_URL}/api/products?featured=true`);
+	return await axios.get(`${API_URL}/products?featured=true`);
 };
 
 export const getSingleProduct = async id => {
-	return await axios.get(`${API_URL}/api/products/${id}`);
+	return await axios.get(`${API_URL}/products/${id}`);
 };
 
-export const getProducts = async () => {
-	return axios.get(`${API_URL}/api/products`);
+export const getProducts = async params => {
+	console.log(params);
+	return await axios.get(`${API_URL}/products`, { params });
 };

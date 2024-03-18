@@ -36,7 +36,7 @@ function Filters() {
 				label="sort by"
 				size="select-sm"
 				list={["a-z", "z-a", "high", "low"]}
-				name="company"
+				name="order"
 			/>
 			<FormRange
 				label="select price"
