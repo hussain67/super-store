@@ -2,12 +2,31 @@ import { useLoaderData } from "react-router-dom";
 import { getSingleProduct } from "../services/apiProducts";
 import { formatCurrency, generateAmountOptions } from "../utils/helpers.jsx";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/cart/cartSlice.js";
 
 function SingleProduct() {
+	const dispatch = useDispatch();
 	const { product } = useLoaderData();
 	const { image, title, company, description, price, colors } = product.attributes;
 	const [productColor, setProductColor] = useState(colors[0]);
 	const [amount, setAmount] = useState(1);
+	// Cart item content
+	const cartProduct = {
+		cartId: product.id + productColor,
+		productId: product.id,
+		title,
+		image,
+		company,
+		price,
+		amount,
+		productColor
+	};
+
+	// Function to Add item to cart
+	const addToCart = () => {
+		dispatch(addItem({ product: cartProduct }));
+	};
 	console.log(amount);
 	return (
 		<article className="grid grid-cols-2 gap-6">
@@ -50,6 +69,14 @@ function SingleProduct() {
 						>
 							{generateAmountOptions(20)}
 						</select>
+					</div>
+					<div className="mt-4">
+						<button
+							className="btn btn-secondary btn-md"
+							onClick={addToCart}
+						>
+							Add to cart
+						</button>
 					</div>
 				</div>
 			</section>
