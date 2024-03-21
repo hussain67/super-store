@@ -48,7 +48,9 @@ const cartSlice = createSlice({
 		clearCart: state => {
 			state.cartItems = defaultState;
 		},
-		removeItem: (state, action) => {},
+		removeItem: (state, action) => {
+			
+		},
 		editItem: (state, action) => {},
 		calculateTotal: state => {
 			state.tax += 0.1 * state.cartTotal;
