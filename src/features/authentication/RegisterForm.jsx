@@ -1,6 +1,8 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
 import FormInput from "../../ui/FormInput";
 import SubmitButton from "../../ui/SubmitButton";
+import { registerUser } from "../../services/apiProducts";
+import { toast } from "react-toastify";
 
 function RegisterForm() {
 	return (
@@ -11,24 +13,24 @@ function RegisterForm() {
 			<h4 className="text-bold text-center ">Register</h4>
 			<FormInput
 				type="text"
-				name="name"
-				defaultValue="name"
+				name="username"
+				placeHolder="your name"
 				label="Name"
 			/>
 			<FormInput
 				type="email"
 				name="email"
-				defaultValue="test@test"
+				placeHolder="test@test"
 				label="Email"
 			/>
 			<FormInput
 				type="password"
 				name="password"
-				defaultValue="...."
+				placeHolder="......"
 				label="Password"
 			/>
 			<div>
-				<SubmitButton text="Submit" />
+				<SubmitButton text="Register" />
 			</div>
 			<p className="text-center">
 				Already a member ? <Link to="/login">Login</Link>
@@ -37,4 +39,17 @@ function RegisterForm() {
 	);
 }
 
+export const action = async ({ request }) => {
+	const formData = await request.formData();
+	const data = Object.fromEntries(formData);
+	try {
+		await registerUser(data);
+		toast.success("User created successfully");
+		return redirect("/login");
+	} catch (error) {
+		const errorMessage = error?.response?.data?.error?.message || "Please check your credential";
+		toast.error(errorMessage);
+		return null;
+	}
+};
 export default RegisterForm;

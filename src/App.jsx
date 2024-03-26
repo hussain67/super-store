@@ -4,6 +4,7 @@ import AppLayout from "./ui/AppLayout";
 import { loader as landingLoader } from "./pages/Landing";
 import { loader as singleProductLoader } from "./pages/SingleProduct";
 import { loader as productsLoader } from "./pages/Products";
+import { action as registrationAction } from "./features/authentication/RegisterForm";
 
 // Create Router
 const router = createBrowserRouter([
@@ -51,7 +52,8 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "/register",
-		element: <Register />
+		element: <Register />,
+		action: registrationAction
 	}
 ]);
 function App() {

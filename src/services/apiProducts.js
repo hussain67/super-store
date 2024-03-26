@@ -18,3 +18,7 @@ export const getProducts = async params => {
 	console.log(params);
 	return await axios.get(`${API_URL}/products`, { params });
 };
+
+export const registerUser = async data => {
+	return await axios.post(`${API_URL}/auth/local/register`, data);
+};
