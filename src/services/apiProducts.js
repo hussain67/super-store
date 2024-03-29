@@ -22,3 +22,7 @@ export const getProducts = async params => {
 export const registerUser = async data => {
 	return await axios.post(`${API_URL}/auth/local/register`, data);
 };
+
+export const login = async data => {
+	return await axios.post(`${API_URL}/auth/local`, data);
+};

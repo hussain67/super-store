@@ -1,7 +1,10 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
 
 import FormInput from "../../ui/FormInput";
 import SubmitButton from "../../ui/SubmitButton";
+import { login } from "../../services/apiProducts";
+import { toast } from "react-toastify";
+import { loginUser } from "../user/userSlice";
 
 function LoginForm() {
 	return (
@@ -13,15 +16,14 @@ function LoginForm() {
 			<FormInput
 				type="email"
 				label="email"
-				name="identifyer"
-				defaultValue="test@test"
+				name="identifier"
 			/>
 
 			<FormInput
 				type="password"
 				label="password"
 				name="password"
-				defaultValue="......."
+				placeHolder="......."
 			/>
 			<div className="text-center my-6">
 				<SubmitButton text="login" />
@@ -38,5 +40,23 @@ function LoginForm() {
 		</Form>
 	);
 }
+
+export const action =
+	store =>
+	async ({ request }) => {
+		const formData = await request.formData();
+		const data = Object.fromEntries(formData);
+		try {
+			const response = await login(data);
+			store.dispatch(loginUser(response.data));
+			localStorage.setItem("user", JSON.stringify(response.data));
+			toast.success("Logged in successfully");
+			return redirect("/");
+		} catch (error) {
+			const errorMessage = error?.response?.data?.error?.message || "Please check your credential";
+			toast.error(errorMessage);
+			return null;
+		}
+	};
 
 export default LoginForm;
