@@ -4,6 +4,9 @@ import AppLayout from "./ui/AppLayout";
 import { loader as landingLoader } from "./pages/Landing";
 import { loader as singleProductLoader } from "./pages/SingleProduct";
 import { loader as productsLoader } from "./pages/Products";
+import { loader as checkoutLoader } from "./pages/Checkout";
+import { loader as ordersLoader } from "./pages/Orders";
+import { action as checkoutAction } from "./features/checkout/CheckoutForm";
 import { action as registrationAction } from "./features/authentication/RegisterForm";
 import { action as loginAction } from "./features/authentication/LoginForm";
 import { store } from "./store";
@@ -37,7 +40,8 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/orders",
-				element: <Orders />
+				element: <Orders />,
+				loader: ordersLoader(store)
 			},
 			{
 				path: "/about",
@@ -45,7 +49,9 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/checkout",
-				element: <Checkout />
+				element: <Checkout />,
+				loader: checkoutLoader(store),
+				action: checkoutAction(store)
 			}
 		]
 	},

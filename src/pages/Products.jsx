@@ -1,8 +1,8 @@
 import Filters from "../features/product/Filters";
-import PaginationContainer from "../features/product/PaginationContainer";
 import ProductsContainer from "../features/product/ProductsContainer";
 // import { customFetch } from "../services/apiProducts";
 import { getProducts } from "../services/apiProducts";
+import PaginationContainer from "../ui/PaginationContainer";
 export default function Products() {
 	return (
 		<>

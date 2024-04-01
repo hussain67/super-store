@@ -26,3 +26,24 @@ export const registerUser = async data => {
 export const login = async data => {
 	return await axios.post(`${API_URL}/auth/local`, data);
 };
+
+export const postOrder = async (info, token) => {
+	return await axios.post(
+		`${API_URL}/orders`,
+		{ data: info },
+		{
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		}
+	);
+};
+
+export const getOrders = async (params, token) => {
+	return await axios.get(`${API_URL}/orders`, {
+		params,
+		headers: {
+			Authorization: `Bearer ${token}`
+		}
+	});
+};

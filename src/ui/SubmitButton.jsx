@@ -15,7 +15,7 @@ function SubmitButton({ text }) {
 					Sending...
 				</>
 			) : (
-				text || "Submit"
+				<span className="capitalize"> {text}</span> || "Submit"
 			)}
 		</button>
 	);
