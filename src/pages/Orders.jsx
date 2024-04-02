@@ -3,7 +3,7 @@ import OrderLists from "../features/order/OrderLists";
 import { redirect, useLoaderData } from "react-router-dom";
 import { getOrders } from "../services/apiProducts";
 import SectionTitle from "../ui/SectionTitle";
-import PaginationContainer from "../ui/PaginationContainer";
+import ComplexPaginationContainer from "../ui/ComplexPaginationContainer";
 
 export const loader =
 	store =>
@@ -37,7 +37,7 @@ function Orders() {
 		<>
 			<SectionTitle text="Your orders" />
 			<OrderLists />
-			<PaginationContainer />
+			<ComplexPaginationContainer />
 		</>
 	);
 }

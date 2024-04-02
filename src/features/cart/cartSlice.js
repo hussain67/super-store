@@ -45,8 +45,9 @@ const cartSlice = createSlice({
 			cartSlice.caseReducers.calculateTotal(state);
 			toast.success("Item added to the cart");
 		},
-		clearCart: state => {
-			state.cartItems = defaultState;
+		clearCart: () => {
+			localStorage.setItem("cart", JSON.stringify(defaultState));
+			return defaultState;
 		},
 		// Action.payload === {id}
 		removeItem: (state, action) => {

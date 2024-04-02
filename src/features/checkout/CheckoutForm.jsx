@@ -25,7 +25,7 @@ export const action =
 			numItemsInCart
 		};
 		try {
-			const response = await postOrder(info, user.jwt);
+			await postOrder(info, user.jwt);
 			store.dispatch(clearCart());
 			toast.success("Order placed successfully");
 			return redirect("/orders");
