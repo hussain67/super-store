@@ -9,8 +9,8 @@ function Hero() {
 	return (
 		<article className="grid lg:grid-cols-2 gap-24 items-center">
 			<section>
-				<h1 className="text-center text-xl mb-4 font-bold"> We are providing excellent customer experience</h1>
-				<p className="text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat, cum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, molestiae?</p>
+				<h1 className=" text-xl mb-4 font-bold"> We are providing excellent customer experience</h1>
+				<p className="text-sm"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat, cum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, molestiae?</p>
 			</section>
 			<div className="hidden lg:carousel h-[20rem] carousel-center px-4 space-x-4 rounded-box">
 				{heroImages.map(image => {

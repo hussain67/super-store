@@ -4,7 +4,7 @@ import ProductsGrid from "./ProductsGrid";
 function FeaturedProducts() {
 	return (
 		<div>
-			<SectionTitle text={"featured products"} />
+			<SectionTitle text={"Featured products"} />
 			<ProductsGrid />
 		</div>
 	);
