@@ -28,12 +28,7 @@ function LoginForm() {
 			<div className="text-center my-6">
 				<SubmitButton text="login" />
 			</div>
-			<button
-				type="button"
-				className="btn btn-secondary btn-block mb-6"
-			>
-				Guest user
-			</button>
+
 			<p className="text-center">
 				Not a member yet? <Link to="/register">Register</Link>
 			</p>
