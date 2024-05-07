@@ -1,6 +1,7 @@
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 
 function PaginationContainer() {
+	// Pagination information
 	const { meta } = useLoaderData();
 
 	//Navigate
@@ -11,8 +12,9 @@ function PaginationContainer() {
 	const pages = Array.from({ length: pageCount }, (_, index) => {
 		return index + 1;
 	});
-	const { search, pathname } = useLocation();
 
+	const { search, pathname } = useLocation();
+	// console.log(search, pathname);
 	//Function handle page change
 	const handlePageChange = pageNumber => {
 		const searchParams = new URLSearchParams(search);
@@ -24,6 +26,7 @@ function PaginationContainer() {
 	if (pageCount < 2) return null;
 	return (
 		<section className="mt-16 flex justify-end">
+			{/* class join from daisy */}
 			<div className="join">
 				<button
 					className="btn btn-xs sm:btn-md"

@@ -12,17 +12,27 @@ export default function Products() {
 		</>
 	);
 }
-
-export const loader = async ({ request }) => {
-	const params = Object.fromEntries([...new URL(request.url).searchParams.entries()]);
-	console.log(request);
-	const response = await getProducts(params);
-	// const response = await customFetch(url, { params });
-
-	console.log(response);
-	const products = response.data.data;
-	const meta = response.data.meta;
-	return { products, meta };
+const allProductsQuery = queryParams => {
+	const { search, company, category, sort, price, shipping, page } = queryParams;
+	return {
+		queryKey: ["products", search ?? "", category ?? "all", company ?? "all", sort ?? "a-z", price ?? 100000, shipping ?? false, page ?? 1],
+		queryFn: () => getProducts(queryParams)
+	};
 };
+
+export const loader =
+	queryClient =>
+	async ({ request }) => {
+		const params = Object.fromEntries([...new URL(request.url).searchParams.entries()]);
+		console.log(params);
+		// console.log(request);
+		const response = await queryClient.ensureQueryData(allProductsQuery(params));
+		getProducts(params);
+
+		console.log(response);
+		const products = response.data.data;
+		const meta = response.data.meta;
+		return { products, meta };
+	};
 
 // export default Products;

@@ -15,7 +15,7 @@ export const getSingleProduct = async id => {
 };
 
 export const getProducts = async params => {
-	console.log(params);
+	// console.log(params);
 	return await axios.get(`${API_URL}/products`, { params });
 };
 

@@ -86,8 +86,18 @@ function SingleProduct() {
 
 export default SingleProduct;
 
-export const loader = async ({ params }) => {
-	const resp = await getSingleProduct(params.id);
-	const product = resp.data.data;
-	return { product };
+const singleProductQuery = id => {
+	return {
+		queryKey: ["singleProductQuery", id],
+		queryFn: () => getSingleProduct(id)
+	};
 };
+
+export const loader =
+	queryClient =>
+	async ({ params }) => {
+		const resp = await queryClient.ensureQueryData(singleProductQuery(params.id));
+
+		const product = resp.data.data;
+		return { product };
+	};

@@ -7,7 +7,7 @@ import { clearCart } from "../cart/cartSlice";
 import { toast } from "react-toastify";
 
 export const action =
-	store =>
+	(store, queryClient) =>
 	async ({ request }) => {
 		const formData = await request.formData();
 		const { name, address } = Object.fromEntries(formData);
@@ -25,7 +25,8 @@ export const action =
 			numItemsInCart
 		};
 		try {
-			await postOrder(info, user.jwt);
+			await postOrder(info, user.token);
+			queryClient.removeQueries(["orders"]);
 			store.dispatch(clearCart());
 			toast.success("Order placed successfully");
 			return redirect("/orders");
@@ -33,7 +34,7 @@ export const action =
 			const errorMessage = error?.response?.data?.error?.message || "There was an error placing your order";
 			toast.error(errorMessage);
 			// eslint-disable-next-line no-constant-condition
-			if (error.response.status === 401 || 403) {
+			if (error?.response?.status === 401 || 403) {
 				return redirect("/login");
 			}
 			return null;

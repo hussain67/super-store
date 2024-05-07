@@ -9,7 +9,7 @@ import { loginUser } from "../user/userSlice";
 function LoginForm() {
 	return (
 		<Form
-			method="POST"
+			method="post"
 			className="w-96  "
 		>
 			<h4 className="font-semibold text-center text-2xl tracking-[2px]">Login</h4>
@@ -44,7 +44,7 @@ export const action =
 		try {
 			const response = await login(data);
 			store.dispatch(loginUser(response.data));
-			localStorage.setItem("user", JSON.stringify(response.data));
+
 			toast.success("Logged in successfully");
 			return redirect("/");
 		} catch (error) {
